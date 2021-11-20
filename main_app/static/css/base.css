@@ -26,6 +26,7 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   min-height: 100vh;
+  background: rgb(245, 232, 252);
   --nav-bg: rgba(104, 197, 248, .7);
   --nav-bg-ff: rgba(104, 197, 248, .9);
   --borders: rgb(36, 116, 248) solid 2px;
