@@ -18,16 +18,17 @@
 <section class="card-container">
   {% for photocard in photocards %}
     <div class="card">
-      <div class="card-content">
-        <div class="card-img-container">
-          <img 
-            src="{% static 'images/finger_heart.jpg' %}" 
-            alt="A finger heart"
-            width="100%"
-          >
+      <a href="{% url 'photocards_detail' photocard.id %}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img 
+              src="{% static 'images/finger_heart.jpg' %}" 
+              alt="A finger heart"
+              width="100%"
+            >
         </div>
         <h2 class="card-title">{{ photocard.name }}</h2>
-          <p>A member of {{ photocard.band }} from the {{ photocard.era }} era</p>
+          <p>A member of {{ photocard.band }}, this photo is from the {{ photocard.era }} era</p>
         <p><small>{{ photocard.description }}</small></p>
       </div>
     </div>

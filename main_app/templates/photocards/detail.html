@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link 
+  rel="stylesheet" 
+  type="text/css" 
+  href="{% static 'css/photocard-detail.css' %}"
+/>
+{% endblock %}
+
+{% block content %}
+
+<section class="photocard-container">
+  <div class="photocard-img">
+    <img 
+      src="{% static 'images/finger_heart.jpg' %}" 
+      alt="a finger heart"
+      width="100%"
+    >
+  </div>
+  <div class="photocard-details">
+    <h1>{{ photocard.name }}</h1>
+      <h2>A member of {{ photocard.band }}, this photo is from the {{ photocard.era }} era</h2>
+    <p>{{ photocard.description }}</p>
+  </div>
+</section>
+
+{% endblock %}

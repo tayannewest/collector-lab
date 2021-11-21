@@ -1,20 +1,8 @@
 from django.shortcuts import render
+from .models import Photocard
 
 # Create your views here.
 
-class Photocard:
-  def __init__(self, name, band, era, description):
-    self.name = name
-    self.band = band
-    self.era = era
-    self.description = description
-
-photocards = [
-  Photocard("Suga", "BTS", "HYYH", "Loved the pastel hair in this era, what a look"),
-  Photocard("Moonbyul", "Mamamoo", "White Wind", "The suits were everything, Moonbyul is for the gays"),
-  Photocard("Taemin", "SHINee", "Lucifer", "It's nice to know that South Korea didn't escape the iron grip of a scene phase"),
-  Photocard("Felix", "Stray Kids", "Back Door", "Such pretty, feminine styling on such a deep-voiced boy"),
-]
 
 def home(request):
   return render(request, "home.html")
@@ -23,4 +11,9 @@ def about(request):
   return render(request, "about.html")
 
 def photocards_index(request):
+  photocards = Photocard.objects.all()
   return render(request, "photocards/index.html", { "photocards": photocards })
+
+def photocards_detail(request, photocard_id):
+  photocard = Photocard.objects.get(id=photocard_id)
+  return render(request, "photocards/detail.html", {"photocard": photocard})
