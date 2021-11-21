@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Photocard
 
 
@@ -22,3 +22,11 @@ def photocards_detail(request, photocard_id):
 class PhotocardCreate(CreateView):
   model = Photocard
   fields = "__all__"
+
+class PhotocardUpdate(UpdateView):
+  model = Photocard
+  fields = ["band", "era", "description"]
+
+class PhotocardDelete(DeleteView):
+  model = Photocard
+  success_url = "/photocards/"

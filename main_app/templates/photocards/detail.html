@@ -23,6 +23,10 @@
     <h1>{{ photocard.name }}</h1>
       <h2>A member of {{ photocard.band }}, this photo is from the {{ photocard.era }} era</h2>
     <p>{{ photocard.description }}</p>
+      <div class="photocard-actions">
+        <a href="{% url 'photocards_update' photocard.id %}" class="btn warn">Edit</a>
+        <a href="{% url 'photocards_delete' photocard.id %}" class="btn danger">Delete</a>
+      </div>
   </div>
 </section>
 
