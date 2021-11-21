@@ -1,9 +1,10 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
 from .models import Photocard
 
+
+
 # Create your views here.
-
-
 def home(request):
   return render(request, "home.html")
 
@@ -17,3 +18,7 @@ def photocards_index(request):
 def photocards_detail(request, photocard_id):
   photocard = Photocard.objects.get(id=photocard_id)
   return render(request, "photocards/detail.html", {"photocard": photocard})
+
+class PhotocardCreate(CreateView):
+  model = Photocard
+  fields = "__all__"
