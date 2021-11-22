@@ -58,6 +58,7 @@
       <button type="submit" class="btn submit">Add Solo</button>
     </form>
     <h3>Favorite Solos</h3>
+    {% if photocard.solo_set.all.count %}
     <table>
       <thead>
         <tr><th>Release Date</th><th>Title</th><th>Genre</th></tr>
@@ -72,6 +73,9 @@
         {% endfor %}
       </tbody>
     </table>
+  {% else %}
+    <p class="subsection-content">No favorite solos from {{photocard.name}}, we get it, it's hard to pick</p>
+    {% endif %}
   </section>
 </div>
 

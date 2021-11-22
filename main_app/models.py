@@ -34,3 +34,6 @@ class Solo(models.Model):
 
   def __str__(self):
     return f"{self.title} is a {self.get_genre_display} song released on {self.date}"
+
+  class Meta:
+    ordering = ["-date"]
