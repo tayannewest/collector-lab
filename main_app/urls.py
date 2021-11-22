@@ -9,5 +9,6 @@ urlpatterns = [
     path("photocards/create/", views.PhotocardCreate.as_view(), name="photocards_create"),
     path("photocards/<int:pk>/update/", views.PhotocardUpdate.as_view(), name="photocards_update"),
     path("photocards/<int:pk>/delete/", views.PhotocardDelete.as_view(), name="photocards_delete"),
+    path("photocards/<int:photocard_id>/add_solo/", views.add_solo, name="add_solo"),
     
 ]

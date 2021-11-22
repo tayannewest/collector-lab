@@ -3,10 +3,19 @@
 
 {% block head %}
 <link 
+  href="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.css" 
+  rel="stylesheet" 
+/>
+<script 
+  src="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.js"
+>
+</script>
+<link 
   rel="stylesheet" 
   type="text/css" 
   href="{% static 'css/photocard-detail.css' %}"
 />
+<script defer src="{% static 'js/photocard-detail.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -29,5 +38,41 @@
       </div>
   </div>
 </section>
+<div class="solos-toy-container">
+  <section class="solos">
+    <div class="subsection-title">
+      <h2>Solos</h2>
+      <img 
+        src="{% static 'images/microphone.png' %}" 
+        alt="An microphone"
+      />
+    </div>
+    <h3>Add a Solo</h3>
+    <form
+      action="{% url 'add_solo' photocard.id %}"
+      method="post" 
+      class="subsection-content"
+    >
+      {% csrf_token %}
+      {{ solo_form.as_p }}
+      <button type="submit" class="btn submit">Add Solo</button>
+    </form>
+    <h3>Favorite Solos</h3>
+    <table>
+      <thead>
+        <tr><th>Release Date</th><th>Title</th><th>Genre</th></tr>
+      </thead>
+      <tbody>
+        {% for solo in photocard.solo_set.all %}
+          <tr>
+            <td>{{solo.date}}</td>
+            <td>{{solo.title}}</td>
+            <td>{{solo.get_genre_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</div>
 
 {% endblock %}
