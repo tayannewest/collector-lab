@@ -17,4 +17,5 @@ urlpatterns = [
   path("styles/<int:pk>/delete/", views.StyleDelete.as_view(), name="styles_delete"),
   path('photocards/<int:photocard_id>/assoc_style/<int:style_id>/', views.assoc_style, name='assoc_style'),
   path('photocards/<int:photocard_id>/add_photo/', views.add_photo, name='add_photo'),
+  path('accounts/signup/', views.signup, name='signup'),
 ]
