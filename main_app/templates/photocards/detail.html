@@ -98,7 +98,7 @@
               class="color-block"
               style="background-color: {{ style.color }}"
             ></div>
-            <a href="{% url 'toys_detail' toy.id %}">
+            <a href="{% url 'styles_detail' style.id %}">
               <p>A {{ style.color }} {{ style.clothing }}</p>
             </a>
           </div>
@@ -114,14 +114,14 @@
           <div class="toy-container">
             <div 
               class="color-block"
-              style="background-color: {{ toy.color }}"
+              style="background-color: {{ style.color }}"
             ></div>
             <a href="{% url 'styles_detail' style.id %}">
               <p>{{ style.color }} {{ style.clothing }}</p>
             </a>
-            <form action="" method="post">
+            <form action="{% url 'assoc_style' photocard.id style.id %}" method="post">
               {% csrf_token %}
-              <button type="submit" class="btn submit">Add  style</button>
+              <button type="submit" class="btn submit">Add</button>
             </form>
           </div>
         {% endfor %}

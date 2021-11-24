@@ -60,3 +60,7 @@ class StyleUpdate(UpdateView):
 class StyleDelete(DeleteView):
   model = Style
   success_url = "/styles/"
+
+def assoc_style(request, photocard_id, style_id):
+  Photocard.objects.get(id=photocard_id).styles.add(style_id)
+  return redirect("photocards_detail", photocard_id=photocard_id)

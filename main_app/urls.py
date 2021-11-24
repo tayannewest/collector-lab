@@ -14,5 +14,6 @@ urlpatterns = [
   path('styles/<int:pk>/', views.StyleDetail.as_view(), name='styles_detail'),
   path('styles/', views.StyleList.as_view(), name='styles_index'),
   path("styles/<int:pk>/update/", views.StyleUpdate.as_view(), name="styles_update"),
-  path("toys/<int:pk>/delete/", views.StyleDelete.as_view(), name="styles_delete"),
+  path("styles/<int:pk>/delete/", views.StyleDelete.as_view(), name="styles_delete"),
+  path('photocards/<int:photocard_id>/assoc_style/<int:style_id>/', views.assoc_style, name='assoc_style'),
 ]
