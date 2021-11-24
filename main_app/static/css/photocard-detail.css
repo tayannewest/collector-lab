@@ -53,20 +53,20 @@
   margin-right: 10px;
 }
 
-.unfed,
-.fed,
+.so-solos-today,
+.has-solos-today,
 .no-toys,
 .all-toys {
   margin: 0;
   font-weight: bold;
 }
 
-.unfed,
+.no-solos-today,
 .no-toys {
   color: var(--danger);
 }
 
-.fed,
+.has-solos-today,
 .all-toys {
   color: var(--submit);
 }

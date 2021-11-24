@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Photocard
+from .models import Photocard, Style
 from .forms import SoloForm
+from django.views.generic import ListView, DetailView
 
 
 
@@ -40,3 +41,21 @@ class PhotocardUpdate(UpdateView):
 class PhotocardDelete(DeleteView):
   model = Photocard
   success_url = "/photocards/"
+
+class StyleCreate(CreateView):
+  model = Style
+  fields = "__all__"
+
+class StyleList(ListView):
+  model = Style
+
+class StyleDetail(DetailView):
+  model = Style
+
+class StyleUpdate(UpdateView):
+  model = Style
+  fields = "__all__"
+
+class StyleDelete(DeleteView):
+  model = Style
+  success_url = "/styles/"
