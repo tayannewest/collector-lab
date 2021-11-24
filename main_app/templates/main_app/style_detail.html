@@ -15,7 +15,7 @@
   <div class="card-bg" style="background-color: {{ style.color }}"></div>
   <div class="card-content">
     <h2>{{ style.name }}</h2>
-    <p>A {{ style.color }} {{ style.name }}</p>
+    <p>{{ style.color }} {{ style.clothing }}</p>
   </div>
 </div>
 <a href="{% url 'styles_update' style.id %}" class="btn warn">Edit</a>

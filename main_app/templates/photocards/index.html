@@ -13,6 +13,7 @@
   <img src="{% static 'images/mamamoo_logo.png' %}" alt="Mamamoo" />
   <img src="{% static 'images/shinee_logo.png' %}" alt="Shinee" />
   <img src="{% static 'images/stray_kids_logo.png' %}" alt="Stray Kids" />
+  <img src="{% static 'images/blackpink.png' %}" alt="Blackpink" />
 </section>
 
 <section class="card-container">
@@ -21,11 +22,18 @@
       <a href="{% url 'photocards_detail' photocard.id %}">
         <div class="card-content">
           <div class="card-img-container">
+            {% if photocard.photo.url %}
+            <img src="{{photocard.photo.url}}" 
+            alt="A photo of {{phtocard.name}}"
+            class="usr-img"
+            >
+          {% else %}
             <img 
               src="{% static 'images/finger_heart.jpg' %}" 
               alt="A finger heart"
               class="usr-img"
             >
+          {% endif %}
         </div>
         <h2 class="card-title">{{ photocard.name }}</h2>
           <p>A member of {{ photocard.band }}, this photo is from the {{ photocard.era }} era</p>

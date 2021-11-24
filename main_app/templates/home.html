@@ -11,11 +11,17 @@
   <div class="photocard-container">
     <img src="{% static 'images/finger_heart.jpg' %}" alt="The Photocard Collector Photocard" width="100%"/>
   </div>
-  {% comment %} <img 
-    src="{% static 'images/logotype.svg' %}" 
-    alt="Text reads: Photocard Collector"
-  /> {% endcomment %}
   <h1>The Photocard Collector</h1>
 </section>
-
+{% if not user.is_authenticated %}
+  <section>
+    <form action="{% url 'home' %}" method="post" class="login">
+      <h1>Login</h1>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="hidden" name="next" value="{{ next }}">
+      <button type="submit" class="btn submit">Login</button>
+    </form>
+  </section>
+{% endif %}
 {% endblock %}

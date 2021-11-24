@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from datetime import date
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -15,7 +16,7 @@ class Style(models.Model):
   color = models.CharField(max_length=20)
 
   def __str__(self):
-    return self.name
+    return self.clothing
 
   def get_absolute_url(self):
       return reverse("styles_detail", kwargs={"pk": self.id})
@@ -27,6 +28,7 @@ class Photocard(models.Model):
   era = models.CharField(max_length=100)
   description = models.TextField(max_length=250)
   styles = models.ManyToManyField(Style)
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
 
   def __str__(self):
     return self.name

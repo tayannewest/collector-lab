@@ -77,7 +77,7 @@
       {% if photocard.solo_for_today %}
         <p class="has-solos-today">{{photocard.name}} has been plenty busy on solos</p>
       {% else %}
-        <p class="no-solos-today">You should add your favorite of {{photocard.name}}'s solos</p>
+        <p class="no-solos-today">You should add your favorite {{photocard.name}} solos</p>
       {% endif %}
       {% csrf_token %}
       {{ solo_form.as_p }}
