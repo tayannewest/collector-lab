@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Photocard, Style
+from .models import Photocard, Style, Photo
 from .forms import SoloForm
 from django.views.generic import ListView, DetailView
+import uuid
+import boto3
 
-
+S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
+BUCKET = 'photocardcollector'
 
 # Create your views here.
 def home(request):
@@ -63,4 +66,22 @@ class StyleDelete(DeleteView):
 
 def assoc_style(request, photocard_id, style_id):
   Photocard.objects.get(id=photocard_id).styles.add(style_id)
+  return redirect("photocards_detail", photocard_id=photocard_id)
+
+def add_photo(request, photocard_id):
+  photo_file = request.FILES.get("photo-file", None)
+  print(photo_file)
+  if photo_file:
+    s3 = boto3.client("s3")
+    key = uuid.uuid4().hex + photo_file.name[photo_file.name.rfind("."):]
+    try:
+      s3.upload_fileobj(photo_file, BUCKET, key)
+      url = f"{S3_BASE_URL}{BUCKET}/{key}"
+      photo = Photo(url=url, photocard_id=photocard_id)
+      photocard_photo = Photo.objects.filter(photocard_id=photocard_id)
+      if photocard_photo.first():
+        photocard_photo.first().delete()
+      photo.save()
+    except Exception as err:
+      print("An error occured uploading file to S3: %s" % err)
   return redirect("photocards_detail", photocard_id=photocard_id)

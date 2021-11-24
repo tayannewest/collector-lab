@@ -22,11 +22,18 @@
 
 <section class="photocard-container">
   <div class="photocard-img">
+  {% if photocard.photo.url %}
+    <img 
+    src="{{photocard.photo.url}}"
+    alt="A photocard of {{photocard.name}}"
+    class="usr-img">
+  {% else %}
     <img 
       src="{% static 'images/finger_heart.jpg' %}" 
       alt="a finger heart"
       width="100%"
     >
+  {% endif %}
   </div>
   <div class="photocard-details">
     <h1>{{ photocard.name }}</h1>
@@ -36,6 +43,20 @@
         <a href="{% url 'photocards_update' photocard.id %}" class="btn warn">Edit</a>
         <a href="{% url 'photocards_delete' photocard.id %}" class="btn danger">Delete</a>
       </div>
+      <h3>Change {{ photocard.name }}'s photo</h3>
+      <p id="file-name"></p>
+      <form 
+        action="{% url 'add_photo' photocard.id %}"
+        enctype="multipart/form-data"
+        method="POST"
+      >
+        {% csrf_token %}
+        <label class="btn secondary">
+          Choose photo
+          <input type="file" name="photo-file" id="file-input">
+        </label>
+        <button type="submit" class="btn submit">Upload Photo</button>
+    </form>
   </div>
 </section>
 <div class="solos-toy-container">

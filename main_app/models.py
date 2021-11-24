@@ -54,3 +54,10 @@ class Solo(models.Model):
 
   def solo_for_today(self):
     return self.solo_set.filter(date=date.today().count() >= len(SOLOS))
+
+class Photo(models.Model):
+  url = models.CharField(max_length=250)
+  photocard = models.OneToOneField(Photocard, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return f"Photo for photocard_id: {self.photocard.id} @{self.url}"
