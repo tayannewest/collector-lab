@@ -82,6 +82,56 @@
     <p class="subsection-content">No favorite solos from {{photocard.name}}, we get it, it's hard to pick</p>
     {% endif %}
   </section>
+    <section class="toys">
+    <div class="subsection-title">
+      <h2>Fashion</h2>
+      <img src="{% static 'images/string.svg' %}" alt="A ball of string" />
+      <img src="{% static 'images/mouse.svg' %}" alt="A mouse" />
+      <img src="{% static 'images/fish.svg' %}" alt="A fishy toy" />
+    </div>
+    <h3>{{ photocard.name }}'s Fashion</h3>
+    <div class="subsection-content">
+      {% if photocard.styles.count %}
+        {% for style in photocard.styles.all %}
+          <div class="toy-container">
+            <div 
+              class="color-block"
+              style="background-color: {{ style.color }}"
+            ></div>
+            <a href="{% url 'toys_detail' toy.id %}">
+              <p>A {{ style.color }} {{ style.clothing }}</p>
+            </a>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="no-toys">{{photocard.name}} doesn't have any signature styles</p>
+      {% endif %}
+    </div>
+    <h3>Available Clothes</h3>
+    <div class="subsection-content">
+      {% if styles.count %}
+      {% for style in styles.all %}
+          <div class="toy-container">
+            <div 
+              class="color-block"
+              style="background-color: {{ toy.color }}"
+            ></div>
+            <a href="{% url 'styles_detail' style.id %}">
+              <p>{{ style.color }} {{ style.clothing }}</p>
+            </a>
+            <form action="" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn submit">Add  style</button>
+            </form>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="all-toys">
+          {{photocard.name}} already has all the available clothes
+        </p>
+      {% endif %}
+    </div>
+  </section>
 </div>
 
 {% endblock %}

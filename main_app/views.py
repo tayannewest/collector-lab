@@ -19,8 +19,9 @@ def photocards_index(request):
 
 def photocards_detail(request, photocard_id):
   photocard = Photocard.objects.get(id=photocard_id)
+  styles_photocard_doesnt_have = Style.objects.exclude( id__in = photocard.styles.all().values_list("id"))
   solo_form = SoloForm()
-  return render(request, "photocards/detail.html", {"photocard": photocard, "solo_form": solo_form})
+  return render(request, "photocards/detail.html", {"photocard": photocard, "solo_form": solo_form, "styles": styles_photocard_doesnt_have})
 
 def add_solo(request, photocard_id):
   form = SoloForm(request.POST)
@@ -32,7 +33,7 @@ def add_solo(request, photocard_id):
 
 class PhotocardCreate(CreateView):
   model = Photocard
-  fields = "__all__"
+  fields = ["name", "band", "era", "description"]
 
 class PhotocardUpdate(UpdateView):
   model = Photocard
