@@ -124,6 +124,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+LOGIN_URL = "home"
+
 LOGIN_REDIRECT_URL = "photocards_index"
 
 LOGOUT_REDIRECT_URL = "home"

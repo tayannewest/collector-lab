@@ -6,12 +6,12 @@
 {% endblock %}
 
 {% block content %}
+<div class="page-header">
   {% if object %}
     <h1>Edit {{object.name}}'s Photocard</h1>
   {% else %}
     <h1>Add a Photocard</h1>
   {% endif %}
-<div class="page-header">
   <img src="{% static 'images/finger_heart.jpg' %}" alt="a finger heart"/>
 </div>
 <form action="" method="post" class="form-container">

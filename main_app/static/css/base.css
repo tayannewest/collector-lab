@@ -153,6 +153,17 @@ nav li {
   margin-left: 20px;
 }
 
+.about {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 22px;
+  margin: 50px;
+}
+
 @media only screen and (min-width: 768px) {
   header {
     position: sticky;
